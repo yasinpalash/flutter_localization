@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/app/language/language_set_code.dart';
 import 'package:get/get.dart';
-
-import 'app/core/bindings/application_bindings.dart';
-import 'app/routes/app_pages.dart';
+import 'app/language/AppTranslations.dart';
+import 'app/modules/home/home_page.dart';
 
 void main() {
-  runApp(
-    GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      locale: const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
-      translations: Language(),
-      title: 'Your App Title',
-      initialBinding: ApplicationBindings(),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
-  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      title: 'Localization Example',
+      translations: AppTranslations(), // Pass your translations here
+      locale: Get.deviceLocale, // Set the initial locale (can also be a default locale)
+      fallbackLocale: const Locale('en', 'US'), // Fallback locale if translation is not found
+      home: const HomePage(),
+    );
+  }
 }

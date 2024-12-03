@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/app/language/app_text.dart';
 import 'package:get/get.dart';
 
 import 'home_controller.dart';
 
-class HomePage extends GetView<HomeController> {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Instantiate the HomeController using Get.put() to access the controller's methods and state
+    final HomeController controller = Get.put(HomeController());
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('language_change'.tr),
+        title: Text(AppText.languageChange.tr),
         centerTitle: true,
       ),
       body: Padding(
@@ -19,15 +23,15 @@ class HomePage extends GetView<HomeController> {
           child: Column(
             children: [
               Text(
-                'app_name'.tr,
+                AppText.appName.tr,
                 style: const TextStyle(fontSize: 20),
               ),
               Text(
-                'my_name'.tr,
+                AppText.myName.tr,
                 style: const TextStyle(fontSize: 20),
               ),
               Text(
-                'description'.tr,
+                AppText.description.tr,
                 style: const TextStyle(fontSize: 20),
               ),
               const SizedBox(
@@ -38,17 +42,17 @@ class HomePage extends GetView<HomeController> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        Get.updateLocale(const Locale('en', 'US'));
+                        controller.changeLanguage('en');
                       },
-                      child: Text('english'.tr)),
+                      child: Text(AppText.english.tr)),
                   SizedBox(
                     width: 20,
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        Get.updateLocale(const Locale('bn', 'BD'));
+                        controller.changeLanguage('bn');
                       },
-                      child: Text('bangla'.tr)),
+                      child: Text(AppText.bangla.tr)),
                 ],
               ),
             ],

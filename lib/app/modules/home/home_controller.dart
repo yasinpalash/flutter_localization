@@ -1,20 +1,14 @@
+import 'dart:ui';
+
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController.
+  // Example state management in controller
+  RxString language = 'en'.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
+  // Method to change language
+  void changeLanguage(String langCode) {
+    language.value = langCode;
+    Get.updateLocale(Locale(langCode));
   }
 }
